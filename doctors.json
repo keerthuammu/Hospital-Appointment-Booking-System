@@ -1,0 +1,86 @@
+[
+    {
+        "id": 1,
+        "name": "Dr. Madhavan Nair",
+        "specialization": "Cardiologist",
+        "experience": "20 Years",
+        "fee": "₹800",
+        "photo": "assets/doctors/dr_madhavan_nair.png",
+        "slots": [
+            "10:00 AM",
+            "11:00 AM",
+            "12:00 PM",
+            "2:00 PM"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Dr. Lakshmi Priya",
+        "specialization": "Dermatologist",
+        "experience": "12 Years",
+        "fee": "₹500",
+        "photo": "assets/doctors/dr_lakshmi_priya.png",
+        "slots": [
+            "9:00 AM",
+            "10:30 AM",
+            "1:00 PM",
+            "3:00 PM"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Dr. Rahul Krishnan",
+        "specialization": "Pediatrician",
+        "experience": "10 Years",
+        "fee": "₹450",
+        "photo": "assets/doctors/dr_rahul_krishnan.png",
+        "slots": [
+            "10:00 AM",
+            "12:30 PM",
+            "2:00 PM",
+            "4:30 PM"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Dr. Anjali Menon",
+        "specialization": "Neurologist",
+        "experience": "15 Years",
+        "fee": "₹1200",
+        "photo": "assets/doctors/dr_anjali_menon.png",
+        "slots": [
+            "11:00 AM",
+            "1:00 PM",
+            "3:00 PM",
+            "5:00 PM"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Dr. Suresh Babu",
+        "specialization": "Orthopedic",
+        "experience": "25 Years",
+        "fee": "₹900",
+        "photo": "assets/doctors/dr_suresh_babu.png",
+        "slots": [
+            "9:30 AM",
+            "11:30 AM",
+            "1:30 PM",
+            "3:30 PM"
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Dr. Parvathy S.",
+        "specialization": "Gastroenterologist",
+        "experience": "9 Years",
+        "fee": "₹600",
+        "photo": "assets/doctors/dr_parvathy_s.png",
+        "slots": [
+            "10:00 AM",
+            "11:00 AM",
+            "2:00 PM",
+            "4:00 PM"
+        ]
+    }
+]
