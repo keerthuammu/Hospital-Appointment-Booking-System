@@ -1,4 +1,5 @@
 :root {
+    /* Design Tokens - For: Milan (UI) & Liya (CSS) */
     --primary-blue: #3B82F6;
     --primary-hover: #2563EB;
     --medical-teal: #10B981;
@@ -7,6 +8,7 @@
     --text-main: #0F172A;
     --text-muted: #64748B;
     --border-color: rgba(226, 232, 240, 0.5);
+    /* Dimensions - For: Jasir (Bootstrap) */
     --radius-lg: 32px;
     --radius-md: 20px;
     --radius-sm: 12px;
@@ -17,6 +19,7 @@
     --glass-border: rgba(255, 255, 255, 0.3);
 }
 
+/* 🎨 Global Reset & Base Styles - For: Jidhin (HTML) & Liya (CSS) */
 * {
     margin: 0;
     padding: 0;
@@ -72,6 +75,7 @@ body {
 }
 
 /* Navbar */
+/* ✨ Navigation Glassmorphism - For: Milan (UI Designer) */
 nav {
     display: flex;
     justify-content: space-between;
@@ -472,34 +476,12 @@ nav {
     letter-spacing: 0.5px;
 }
 
-.select-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.select-wrapper::after {
-    content: '▼';
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
-.form-group select {
-    appearance: none;
-    -webkit-appearance: none;
-    padding-right: 40px;
-}
-
 input,
 select {
     width: 100%;
     padding: 1rem 1.2rem;
     border: 2px solid #F1F5F9;
-    border-radius: 12px;
+    border-radius: 16px;
     background: #F8FAFC;
     font-size: 1rem;
     color: var(--text-main);
@@ -634,6 +616,8 @@ select {
 }
 
 /* Modal Ticket Design */
+/* 🛡️ Modal Styles - For: Milan (UI) & Jasir (Bootstrap) */
+/* Jasir: Integrate these with Bootstrap Modals if switching over */
 .modal-overlay {
     position: fixed;
     inset: 0;

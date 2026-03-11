@@ -7,32 +7,21 @@ $(document).ready(function () {
     let today = new Date().toISOString().split('T')[0];
     $('#appointmentDate').attr('min', today);
 
-    // 1. Initial Data Loading (AJAX)
+    // 🚀 1. Initial Data Loading (AJAX) - For: Josekutty (AJAX Developer)
+    // Goal: Replace static JSON calls with backend API endpoints in ‘backend/api/’
     loadDoctors();
     renderMyBookings();
 
     function loadDoctors() {
+        // Krishna: Verify this logic for dynamic doctor cards on the homepage
         $.getJSON('doctors.json', function (data) {
-            if (Array.isArray(data)) {
-                globalDoctorsData = data;
-                populateDepartmentDropdown(data);
-                populateDoctorDropdown(data);
-                renderHomeDoctors(data);
-            } else {
-                console.error("Doctor data is not an array.");
-                showPageError("Failed to load specialty data format.");
-            }
-        }).fail(function (jqxhr, textStatus, error) {
-            console.error("Error loading doctor data:", textStatus, error);
-            showPageError("Please run this project using a local server (like Live Server) to see doctors and specialties.");
+            globalDoctorsData = data;
+            populateDepartmentDropdown(data);
+            populateDoctorDropdown(data);
+            renderHomeDoctors(data);
+        }).fail(function () {
+            console.error("Error loading doctor data.");
         });
-    }
-
-    function showPageError(msg) {
-        // Show error message in place of doctors/specialties
-        $('#homeDoctorsGrid').html(`<p style="text-align: center; color: #ef4444; grid-column: 1/-1;">${msg}</p>`);
-        $('.placeholder-text').text(msg).css('color', '#ef4444');
-        $('#departmentSelect').html(`<option value="all">${msg}</option>`);
     }
 
     function renderHomeDoctors(doctors) {
@@ -60,18 +49,9 @@ $(document).ready(function () {
     }
 
     function populateDepartmentDropdown(doctors) {
-        let depts = [];
-        doctors.forEach(function(doc) {
-            if (depts.indexOf(doc.specialization) === -1) {
-                depts.push(doc.specialization);
-            }
-        });
-        
+        let departments = [...new Set(doctors.map(doc => doc.specialization))];
         let $select = $('#departmentSelect');
-        if (!$select.length) return;
-
-        $select.find('option:not(:first)').remove(); // Clear existing except "All"
-        depts.forEach(function (dept) {
+        departments.forEach(function (dept) {
             let optionHtml = `<option value="${dept}">${dept}</option>`;
             $select.append(optionHtml);
         });
@@ -199,10 +179,12 @@ $(document).ready(function () {
         $('#selectedSlot').val($(this).data('slot'));
     });
 
-    // 5. Handle Booking Submission & Validation
+    // 🛡️ 5. Handle Booking Submission & Validation - For: Joseph (jQuery) & Krishna (JS)
+    // Goal: Ensure all data is accurate before sending to Jobin’s PHP backend
     $('#bookingForm').on('submit', function (e) {
         e.preventDefault();
 
+        // Joseph: Use jQuery to grab form values and trigger the validation logic
         if (!validateForm()) {
             return;
         }
