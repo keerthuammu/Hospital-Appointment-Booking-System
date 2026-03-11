@@ -4,7 +4,7 @@
 ## 📝 Abstract
 A web-based platform for medical scheduling. Features a Glassmorphism UI, AJAX slot loading, and a PHP/MySQL backend.
 # 🏥 CarePlus Hospital System
-**Project Overview for 12-Member Team**
+**Project Overview for 12-Member Teams**
 
 ## 📝 Abstract
 A web-based platform for medical scheduling. Features a Glassmorphism UI, AJAX slot loading, and a PHP/MySQL backend.
