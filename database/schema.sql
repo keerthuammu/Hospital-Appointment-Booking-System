@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS appointments (
 -- Admin User
 INSERT INTO users (name, email, password, role) VALUES ('Admin', 'admin@careplus.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
 
--- 6 Doctor Users & Profiles
+-- 8 Doctor Users & Profiles
 INSERT INTO users (name, email, password, role) VALUES ('Dr. Madhavan Nair', 'madhavan@careplus.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'doctor');
 SET @doc1_user_id = LAST_INSERT_ID();
 INSERT INTO doctors (user_id, doctor_name, specialization, experience, fee, photo_url, available_days, available_slots) 
@@ -68,10 +68,10 @@ SET @doc2_user_id = LAST_INSERT_ID();
 INSERT INTO doctors (user_id, doctor_name, specialization, experience, fee, photo_url, available_days, available_slots) 
 VALUES (@doc2_user_id, 'Dr. Lakshmi Priya', 'Pediatrics', '10 Years', '₹600', 'assets/doctors/dr_lakshmi_priya.png', 'Tuesday,Thursday,Saturday', '10:00 AM,11:00 AM,01:00 PM,04:00 PM');
 
-INSERT INTO users (name, email, password, role) VALUES ('Dr. Suresh Babu', 'suresh@careplus.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'doctor');
+INSERT INTO users (name, email, password, role) VALUES ('Dr. Rajesh Kumar', 'rajesh@careplus.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'doctor');
 SET @doc3_user_id = LAST_INSERT_ID();
 INSERT INTO doctors (user_id, doctor_name, specialization, experience, fee, photo_url, available_days, available_slots) 
-VALUES (@doc3_user_id, 'Dr. Suresh Babu', 'Orthopedics', '12 Years', '₹700', 'assets/doctors/dr_suresh_babu.png', 'Monday,Wednesday,Thursday', '09:00 AM,11:00 AM,02:00 PM,05:00 PM');
+VALUES (@doc3_user_id, 'Dr. Rajesh Kumar', 'Orthopedics', '12 Years', '₹700', 'assets/doctors/dr_rajesh_kumar.png', 'Monday,Wednesday,Thursday', '09:00 AM,11:00 AM,02:00 PM,05:00 PM');
 
 INSERT INTO users (name, email, password, role) VALUES ('Dr. Anjali Menon', 'anjali@careplus.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'doctor');
 SET @doc4_user_id = LAST_INSERT_ID();
@@ -87,6 +87,16 @@ INSERT INTO users (name, email, password, role) VALUES ('Dr. Parvathy S.', 'parv
 SET @doc6_user_id = LAST_INSERT_ID();
 INSERT INTO doctors (user_id, doctor_name, specialization, experience, fee, photo_url, available_days, available_slots) 
 VALUES (@doc6_user_id, 'Dr. Parvathy S.', 'Gynecology', '14 Years', '₹900', 'assets/doctors/dr_parvathy_s.png', 'Wednesday,Thursday,Saturday', '09:00 AM,11:30 AM,02:00 PM,03:30 PM');
+
+INSERT INTO users (name, email, password, role) VALUES ('Dr. Suresh Babu', 'sureshb@careplus.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'doctor');
+SET @doc7_user_id = LAST_INSERT_ID();
+INSERT INTO doctors (user_id, doctor_name, specialization, experience, fee, photo_url, available_days, available_slots) 
+VALUES (@doc7_user_id, 'Dr. Suresh Babu', 'Orthopedics', '18 Years', '₹750', 'assets/doctors/dr_suresh_babu.png', 'Friday,Saturday', '10:00 AM,11:00 AM,03:00 PM');
+
+INSERT INTO users (name, email, password, role) VALUES ('Dr. Arun Kumar', 'arun@careplus.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'doctor');
+SET @doc8_user_id = LAST_INSERT_ID();
+INSERT INTO doctors (user_id, doctor_name, specialization, experience, fee, photo_url, available_days, available_slots) 
+VALUES (@doc8_user_id, 'Dr. Arun Kumar', 'General Medicine', '5 Years', '₹400', 'assets/doctors/dr_madhavan_nair.png', 'Monday,Tuesday,Wednesday', '09:00 AM,10:00 AM,04:00 PM');
 
 -- Patient User
 INSERT INTO users (name, email, password, role) VALUES ('John Doe', 'john@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'patient');
