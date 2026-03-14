@@ -61,7 +61,7 @@ $(document).ready(function() {
                 }
             },
             error: function() {
-                $('#loginAlert').removeClass('d-none').text('Server error occurred.');
+                $('#loginAlert').removeClass('d-none').text('Server error. Please try again later.');
             }
         });
     });
