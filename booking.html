@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Appointment - CarePlus</title>
-    <!-- Bootstrap 5 CSS - For: Jasir -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <!-- Navigation -->
@@ -21,13 +20,13 @@
         <a href="index.html#home">Home</a>
         <a href="index.html#specialty">Specialties</a>
         <a href="index.html#doctors">Doctors</a>
-        <a href="#myBookings">My Bookings</a>
         <a href="index.html#contact">Contact</a>
+        <a href="login.html" class="login-link mobile-only">Login</a>
         <a href="booking.html" class="btn-primary mobile-only" style="margin-top: 1rem;">Book Now</a>
     </div>
     <div class="nav-actions">
-        <a href="booking.html" class="btn-primary desktop-only" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Book
-            Now</a>
+        <a href="login.html" class="btn-outline-primary desktop-only auth-btn" style="padding: 0.6rem 1.5rem; font-size: 0.9rem; margin-right: 10px; text-decoration: none; border-radius: 50px; border: 2px solid var(--primary-blue); color: var(--primary-blue); font-weight: 600; background: transparent; transition: all 0.3s ease;">Login</a>
+        <a href="booking.html" class="btn-primary desktop-only" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Book Now</a>
         <button class="mobile-menu-btn" id="menuBtn">
             <span></span>
             <span></span>
@@ -118,7 +117,7 @@
 
 <!-- Success Modal -->
 <div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
+    <div class="booking-receipt-modal">
         <div class="success-badge">✔</div>
         <h2 style="font-weight: 800; font-size: 1.5rem; margin-bottom: 0.5rem;">Confirmed!</h2>
         <p style="color: #64748B;">Your appointment has been scheduled.</p>
@@ -160,21 +159,7 @@
     </div>
 </div>
 
-<!-- My Bookings Section -->
-<section id="myBookings" class="section-padding" style="background: #fff; min-height: 40vh;">
-    <div class="container">
-        <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-            <h2 style="font-size: 2.2rem; font-weight: 800;">My <span>Bookings</span></h2>
-            <p style="color: var(--text-muted);">Manage your scheduled appointments below</p>
-        </div>
-        <div id="myBookingsList" class="my-bookings-grid">
-            <!-- Bookings will be injected here -->
-            <div class="no-bookings-placeholder">
-                <p>No active bookings found for this session.</p>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- Removed static My Bookings section - Users use Patient Dashboard now -->
 
 <footer class="main-footer" style="margin-top: 4rem;">
     <div class="container">

@@ -1,40 +1,23 @@
 # 🏥 CarePlus Hospital System
-**Project Overview for 12-Member Team**
 
-## 📝 Abstract
-A web-based platform for medical scheduling. Features a Glassmorphism UI, AJAX slot loading, and a PHP/MySQL backend.
-# 🏥 CarePlus Hospital System
-**Project Overview for 12-Member Teams**
+CarePlus is a premium hospital appointment platform built by a **12-member medical-tech team**.
 
-## 📝 Abstract
-A web-based platform for medical scheduling. Features a Glassmorphism UI, AJAX slot loading, and a PHP/MySQL backend.
+## ✨ Key Features
+- **Smart Booking**: AJAX-powered doctor selection and real-time slot checking.
+- **Patient Dashboard**: Manage profiles (including DOB) and view/cancel booking history.
+- **Doctor Portal**: Real-time schedule monitoring and appointment management.
+- **Admin Panel**: Complete control over doctor directories, specialization, and availability.
 
 ## 🛠️ Tech Stack
 - **Frontend**: HTML5, CSS3, Bootstrap 5, jQuery, AJAX.
-- **Backend**: PHP 8.x.
-- **Database**: MySQL.
+- **Backend**: PHP 8.x, MySQL.
 
-## 📁 5. Project Structure
-```text
-hospital-booking-system/
-├── assets/             # Images and Icons
-├── css/                # style.css
-├── js/                 # script.js
-├── docs/               # Team Resources (Setup, Roster, Testing)
-├── backend/
-│   ├── api/            # API Endpoints
-│   ├── includes/       # config.php
-│   └── TEAM_GUIDE.md   # Backend Instructions
-├── database/           # MySQL Schema (.sql)
-├── index.html          # Homepage
-├── booking.html        # Booking Form
-└── README.md           # Master Guide
-```
+## 👥 Team Collaboration
+This project follows a strict branching workflow. Each member (Keerthana, Milan, Jidhin, Liya, Jasir, Krishna, Joseph, Josekutty, Jobin, Lamees, Mahi, Jiya) has specific task ownership.
 
-## 💡 Workflow
-1. **Load**: AJAX fetches doctors.
-2. **Book**: jQuery validates inputs -> PHP saves to MySQL.
-3. **Cancel**: Real-time cancellation via "My Bookings".
+**See [CONTRIBUTING.md](CONTRIBUTING.md) for Git commands and [docs/SETUP_QUICKSTART.md](docs/SETUP_QUICKSTART.md) for testing credentials.**
 
----
-*For setup instructions, see [docs/TEAM_START.md](docs/TEAM_START.md)*
+## 🚀 Setup
+1. See the [Quickstart Guide](docs/SETUP_QUICKSTART.md) for full XAMPP and SQL instructions.
+2. Configure `backend/includes/config.php`.
+3. Access via `http://localhost/Hospital-Appointment-Booking-System/`.

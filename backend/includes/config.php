@@ -1,6 +1,7 @@
 <?php
-// Database Configuration
-// For: Jobin (PHP Backend Developer)
+/**
+ * CarePlus Hospital System - Database Configuration
+ */
 
 $host = 'localhost';
 $db   = 'hospital_booking';

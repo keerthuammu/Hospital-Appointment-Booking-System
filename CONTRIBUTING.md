@@ -1,48 +1,59 @@
-# Project Contribution Guide 🤝
--- For: The whole Team
+# 🤝 Team Contribution & Git Guide
 
-## 🌿 Branching Strategy
-1. **Never** work directly on `master`.
-2. Work on your assigned branch: `${your-role-name}`.
-3. Once a feature is done, create a Pull Request to `develop`.
-4. **Keerthana** will review and merge into `master`.
+CarePlus is developed by a **12-member team**. Each role corresponds to a specific branch in the repository.
 
-## 💻 Git Quick Reference (Cheat Sheet)
+## 👥 The team & Branches
+| Role | Lead | Branch Name |
+| :--- | :--- | :--- |
+| **Project Lead** | Keerthana | `main` |
+| **UI/UX Designer**| Milan | `ui-development` |
+| **HTML Lead** | Jidhin | `html-structure` |
+| **CSS Developer** | Liya | `css-styling` |
+| **Bootstrap Dev** | Jasir | `bootstrap-components` |
+| **JS Logic** | Krishna | `javascript-logic` |
+| **jQuery Lead** | Joseph | `jQuery-developer` |
+| **AJAX Lead** | Josekutty | `AJAX-Developer` |
+| **Backend Dev** | Jobin | `php-backend` |
+| **Database Lead** | Lamees | `mysql-database` |
+| **Integrator** | Mahi | `integration` |
+| **QA / Testing** | Jiya | `testing-documentation` |
 
-### 1. Get the Code
+---
+
+## 🌿 Git Workflow (Step-by-Step)
+
+### 1. Setup & Branching
 ```bash
-# Clone the project for the first time
+# Clone and enter project
 git clone <repository_url>
-cd hospital-booking-system
+cd Hospital-Appointment-Booking-System
+
+# Switch to your assigned branch
+git checkout <your-branch-name>
 ```
 
-### 2. Prepare Your Branch
+### 2. Daily Development
 ```bash
-# Create and switch to your specific branch
-git checkout -b <your-branch-name>
+# Get latest changes from the main branch
+git pull origin main
 
-# Verify which branch you are on
-git branch
-```
-
-### 3. Update Your Work
-```bash
-# Get the latest changes from the team
-git pull origin develop
-
-# Save your current progress
+# Add and commit your work
 git add .
-git commit -m "Brief summary of what you did"
+git commit -m "feat: your descriptive message"
 ```
 
-### 4. Share Your Code
+### 3. Sharing & Merging
 ```bash
-# Push your branch to GitHub
+# Push your work to your branch
 git push origin <your-branch-name>
+
+# To merge main into your branch if needed
+git merge main
 ```
 
-## 📋 Coding Standards
-- **HTML**: Use semantic tags (`<section>`, `<article>`). - Jidhin
-- **CSS**: Use variables from `:root` for colors. - Liya
-- **JS/jQuery**: Keep functions modular. - Krishna/Joseph
-- **PHP**: Use prepared statements for SQL. - Jobin
+### 4. Pull Requests
+- Open a PR from your branch → `main`.
+- **Keerthana** will review and merge the code.
+
+---
+*For final verification, refer to the [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md).*

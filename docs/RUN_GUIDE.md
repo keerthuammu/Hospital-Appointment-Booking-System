@@ -1,50 +1,25 @@
-# 🚀 How to Run the Project (Local Setup)
+# 🚀 Project Setup Guide
 
-Since this project uses **PHP** and **MySQL**, it cannot be opened by just double-clicking the HTML files. You need a local server.
+### 1. Requirements
+- **Server**: XAMPP / WAMP / MAMP (PHP 8.x + MySQL).
+- **Public Folder**: Place project in `htdocs` (XAMPP) or `www` (WAMP).
 
----
+### 2. Database Configuration
+1. Open **phpMyAdmin**.
+2. Create a new database named **`hospital_booking`**.
+3. Import the `database/schema.sql` file.
 
-### 1️⃣ Install a Local Server
-Download and install one of these:
-- **XAMPP** (Recommended for Windows/Mac/Linux) -> [Download XAMPP](https://www.apachefriends.org/download.html)
-- **WAMP** (Windows only)
-- **MAMP** (Mac only)
+### 3. Configuration
+Check `backend/includes/config.php` to ensure database credentials match your local host:
+```php
+$db_name = 'hospital_booking';
+$db_user = 'root';
+$db_pass = ''; // Default for XAMPP
+```
 
----
+### 4. Running the App
+Navigate to: `http://localhost/Hospital-Appointment-Booking-System/`
 
-### 2️⃣ Move the Project Folder
-1. Copy your entire `hospital-booking-system` folder.
-2. Paste it into the server's public directory:
-   - **XAMPP**: `C:\xampp\htdocs\`
-   - **WAMP**: `C:\wamp64\www\`
-
----
-
-### 3️⃣ Start the Server
-1. Open the **XAMPP Control Panel**.
-2. Click **Start** for **Apache** (the web server).
-3. Click **Start** for **MySQL** (the database).
-
----
-
-### 4️⃣ Setup the Database
-1. Open your browser and go to: `http://localhost/phpmyadmin/`
-2. Click **New** on the left menu.
-3. Name the database: **`hospital_booking_system`** and click **Create**.
-4. Click the **Import** tab at the top.
-5. Click **Choose File** and select: 
-   `database/schema.sql` (inside your project folder).
-6. Click **Go** at the bottom.
-
----
-
-### 5️⃣ Run the Application
-1. In your browser, go to:
-   `http://localhost/hospital-booking-system/`
-2. You should see the homepage! Try clicking **"Book Now"**.
-
----
-
-### 💡 Troubleshooting
-- **Database Connection Error**: Open `backend/includes/config.php` and check if the `db_name`, `db_user`, and `db_pass` match your local settings.
-- **Port Busy**: If Apache doesn't start, make sure Skype or another web server isn't using port 80.
+### 📋 Troubleshooting
+- **Not Loading?** Ensure Apache and MySQL are running in your control panel.
+- **Login Issues?** Check if the `users` table was correctly populated during import.

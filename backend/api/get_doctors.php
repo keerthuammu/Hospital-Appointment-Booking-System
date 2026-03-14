@@ -1,15 +1,29 @@
 <?php
-// API to fetch doctors
-// For: Jobin (Backend) & Josekutty (AJAX)
-
+/**
+ * CarePlus Hospital System - Doctor Directory API
+ */
 header('Content-Type: application/json');
 require_once '../includes/config.php';
 
 try {
     $stmt = $pdo->query("SELECT * FROM doctors");
-    $doctors = $stmt->fetchAll();
+    $docs = $stmt->fetchAll();
     
-    echo json_encode($doctors);
+    $doctorsList = [];
+    foreach ($docs as $doc) {
+        $doctorsList[] = [
+            'id' => $doc['doctor_id'],
+            'name' => $doc['doctor_name'],
+            'specialization' => $doc['specialization'],
+            'experience' => $doc['experience'],
+            'fee' => $doc['fee'],
+            'photo' => $doc['photo_url'],
+            'available_days' => $doc['available_days'],
+            'slots' => explode(',', $doc['available_slots'])
+        ];
+    }
+    
+    echo json_encode($doctorsList);
 } catch (Exception $e) {
     echo json_encode(['error' => $e->getMessage()]);
 }

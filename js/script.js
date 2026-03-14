@@ -1,20 +1,63 @@
+/**
+ * CarePlus Hospital System - Main Global Logic
+ * Handles booking flow, dynamic slot loading, and global navigation.
+ */
 $(document).ready(function () {
     let globalDoctorsData = [];
-    let sessionBookings = []; // Store new bookings in session memory
     let globalBookedSlots = [];
 
-    // Past Dates Validation: Set min attribute for date picker to today
+    // --- INITIALIZATION ---
     let today = new Date().toISOString().split('T')[0];
     $('#appointmentDate').attr('min', today);
 
-    // 🚀 1. Initial Data Loading (AJAX) - For: Josekutty (AJAX Developer)
-    // Goal: Replace static JSON calls with backend API endpoints in ‘backend/api/’
+    // Initial Data Loading
     loadDoctors();
-    renderMyBookings();
+    checkLoginState();
+
+    function checkLoginState() {
+        $.ajax({
+            url: 'backend/api/auth.php?action=check_session',
+            method: 'GET',
+            dataType: 'json',
+            success: function(res) {
+                const isBookingPage = window.location.pathname.includes('booking.html');
+                
+                if(res.success && res.role === 'patient') {
+                    // Fetch profile to auto-fill
+                    $.ajax({
+                        url: 'backend/api/patient.php?action=get_profile',
+                        method: 'GET',
+                        success: function(profRes) {
+                            if(profRes.success && $('#patientName').length) {
+                                $('#patientName').val(profRes.profile.name).prop('readonly', true);
+                                $('#patientPhone').val(profRes.profile.phone).prop('readonly', true);
+                            }
+                        }
+                    });
+
+                    // Update Nav - Change Login to My Dashboard
+                    $('.auth-btn').attr('href', 'patient_dashboard.html').html('My Dashboard');
+                    $('.login-link').attr('href', 'patient_dashboard.html').html('My Dashboard');
+                } else if(res.success && res.role === 'admin') {
+                    $('.auth-btn').attr('href', 'admin_dashboard.html').html('Admin Panel');
+                    $('.login-link').attr('href', 'admin_dashboard.html').html('Admin Panel');
+                    if(isBookingPage) window.location.href = 'admin_dashboard.html';
+                } else if(res.success && res.role === 'doctor') {
+                    $('.auth-btn').attr('href', 'doctor_dashboard.html').html('Doctor Portal');
+                    $('.login-link').attr('href', 'doctor_dashboard.html').html('Doctor Portal');
+                    if(isBookingPage) window.location.href = 'doctor_dashboard.html';
+                } else {
+                    // Not logged in
+                    if(isBookingPage) {
+                        window.location.href = 'login.html?redirect=booking.html';
+                    }
+                }
+            }
+        });
+    }
 
     function loadDoctors() {
-        // Krishna: Verify this logic for dynamic doctor cards on the homepage
-        $.getJSON('doctors.json', function (data) {
+        $.getJSON('backend/api/get_doctors.php', function (data) {
             globalDoctorsData = data;
             populateDepartmentDropdown(data);
             populateDoctorDropdown(data);
@@ -118,25 +161,22 @@ $(document).ready(function () {
     // 3. Dynamic Slot Loading and AJAX Availability Check
     function checkAvailabilityAndRenderSlots(doctorId, dateText) {
         $.ajax({
-            url: 'bookings.json',
+            url: `backend/api/check_slots.php?doctor_id=${doctorId}&date=${dateText}`,
             method: 'GET',
             dataType: 'json',
-            success: function (bookings) {
-                let allBookings = bookings.concat(sessionBookings);
-
-                // Filter booked slots for the chosen doctor and date
-                let bookedSlotsForDocAndDate = allBookings
-                    .filter(b => b.doctorId === doctorId && b.date === dateText)
-                    .map(b => b.slot);
-
-                // Track internally to prevent double booking on submission
-                globalBookedSlots = bookedSlotsForDocAndDate;
-
-                renderSlots(doctorId, bookedSlotsForDocAndDate);
+            success: function (res) {
+                if (res.success) {
+                    let bookedSlotsForDocAndDate = res.booked_slots;
+                    globalBookedSlots = bookedSlotsForDocAndDate;
+                    renderSlots(doctorId, bookedSlotsForDocAndDate);
+                } else {
+                    console.error("Failed to fetch slots");
+                    globalBookedSlots = [];
+                    renderSlots(doctorId, []);
+                }
             },
             error: function () {
-                // Fallback to empty booked array if bookings.json not found
-                console.warn("Could not load bookings.json, assuming no bookings.");
+                console.warn("Could not load check_slots API, assuming no bookings.");
                 globalBookedSlots = [];
                 renderSlots(doctorId, []);
             }
@@ -212,27 +252,39 @@ $(document).ready(function () {
         let refNo = "APT-" + Math.floor(10000 + Math.random() * 90000);
 
         // 6. Confirmation Modal
-        showBookingConfirmation(refNo, patientName, patientPhone, category, doctorName, appointmentDate, selectedTimeSlot);
+        // Save to Database via API
+        let bookingData = {
+            reference_no: refNo,
+            doctor_id: parseInt(doctorId),
+            patient_name: patientName,
+            patient_phone: patientPhone,
+            appointment_date: appointmentDate,
+            appointment_time: selectedTimeSlot
+        };
 
-        // Save to session memory so it stays booked while page is open
-        sessionBookings.push({
-            id: refNo,
-            doctorId: parseInt(doctorId),
-            patientName: patientName,
-            category: category,
-            doctorName: doctorName,
-            date: appointmentDate,
-            slot: selectedTimeSlot
+        $.ajax({
+            url: 'backend/api/book_appointment.php',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(bookingData),
+            success: function(res) {
+                if (res.success) {
+                    showBookingConfirmation(refNo, patientName, patientPhone, category, doctorName, appointmentDate, selectedTimeSlot);
+                    
+                    // Reset the form locally
+                    $('#selectedSlot').val('');
+                    $('#departmentSelect').val('all'); // Reset department filter
+                    populateDoctorDropdown(globalDoctorsData); // Reset doctors to show all
+                    resetSlotsView("Please select a doctor and date to see available slots.");
+                } else {
+                    showError($('#slotsContainer'), "Error: " + res.message);
+                    refreshSlotView(); // Resync slots view
+                }
+            },
+            error: function() {
+                alert("An error occurred connecting to the server.");
+            }
         });
-
-        renderMyBookings();
-
-        // Reset the form locally
-        $('#bookingForm')[0].reset();
-        $('#selectedSlot').val('');
-        $('#departmentSelect').val('all'); // Reset department filter
-        populateDoctorDropdown(globalDoctorsData); // Reset doctors to show all
-        resetSlotsView("Please select a doctor and date to see available slots.");
     });
 
     function showBookingConfirmation(ref, patient, phone, category, doctor, date, slot) {
@@ -251,6 +303,7 @@ $(document).ready(function () {
     $('#closeModalBtn, #modalOverlay').on('click', function (e) {
         if (e.target.id === 'modalOverlay' || e.target.id === 'closeModalBtn') {
             $('#modalOverlay').removeClass('active');
+            window.location.href = 'patient_dashboard.html';
         }
     });
 
@@ -349,50 +402,7 @@ $(document).ready(function () {
         $group.find('.error-msg').text('');
     }
 
-    // --- My Bookings Logic ---
-    function renderMyBookings() {
-        let $list = $('#myBookingsList');
-        if (!$list.length) return; // Not on booking page or element missing
-
-        $list.empty();
-        if (sessionBookings.length === 0) {
-            $list.append(`<div class="no-bookings-placeholder"><p>No active bookings found for this session.</p></div>`);
-            return;
-        }
-
-        sessionBookings.forEach(function (booking, index) {
-            let cardHtml = `
-                <div class="booking-card">
-                    <div class="bc-header">
-                        <span class="bc-ref">${booking.id}</span>
-                        <span style="font-size: 0.75rem; color: #16a34a; font-weight: 700;">Confirmed</span>
-                    </div>
-                    <div class="bc-body">
-                        <p>Patient: <span>${booking.patientName}</span></p>
-                        <p>Doctor: <span>${booking.doctorName}</span></p>
-                        <p>Specialty: <span>${booking.category}</span></p>
-                        <p>Schedule: <span>${booking.date} at ${booking.slot}</span></p>
-                    </div>
-                    <button class="cancel-btn" data-index="${index}">Cancel Appointment</button>
-                </div>
-            `;
-            $list.append(cardHtml);
-        });
-    }
-
-    // Handle Cancellation
-    $(document).on('click', '.cancel-btn', function () {
-        if (!confirm("Are you sure you want to cancel this appointment?")) return;
-
-        let index = $(this).data('index');
-        sessionBookings.splice(index, 1);
-
-        renderMyBookings();
-        refreshSlotView(); // Free up the slot in the UI if user is looking at the same doctor/date
-
-        // Dynamic notification
-        alert("Boarding pass / Appointment has been successfully cancelled.");
-    });
+    // We removed the static My Bookings rendering logic from this script as it's now handled entirely by the patient dashboard.
 
     // Sticky Nav Logic
     $(window).scroll(function () {
