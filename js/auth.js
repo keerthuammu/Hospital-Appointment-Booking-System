@@ -42,7 +42,7 @@ $(document).ready(function() {
         checkSessionAndRedirect();
     }
 
-    // Login Form Submit
+    // Login Form Submitted
     $('#loginForm').on('submit', function(e) {
         e.preventDefault();
         let email = $('#email').val();
