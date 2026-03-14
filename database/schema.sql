@@ -1,4 +1,5 @@
 -- CarePlus Hospital Booking System - Database Schema
+-- SQL file of Hospital Appointment System
 
 CREATE DATABASE IF NOT EXISTS hospital_booking;
 USE hospital_booking;
