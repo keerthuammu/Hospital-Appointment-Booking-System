@@ -6,9 +6,10 @@
 $host = 'localhost';
 $db   = 'hospital_booking';
 $user = 'root';
-$pass = ''; // Default for local dev
+$pass = ''; // 🛠️ CHANGE THIS if you have a database password
 $charset = 'utf8mb4';
 
+// 🛠️ ADD ";port=3307" to $dsn below if your MySQL port is not 3306
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,

@@ -72,8 +72,8 @@ $(document).ready(function () {
         if (!$grid.length) return; // Not on home page
         $grid.empty();
 
-        // Show only first 4 doctors on home page
-        doctors.slice(0, 4).forEach(function (doc) {
+        // Show only first 8 doctors on home page
+        doctors.slice(0, 8).forEach(function (doc) {
             let cardHtml = `
                 <div class="doc-home-card glass-card">
                     <img src="${doc.photo}" alt="${doc.name}">
@@ -191,7 +191,7 @@ $(document).ready(function () {
         if (!docRecord) return;
 
         if (docRecord.slots.length === 0) {
-            resetSlotsView("No slots available for this doctor.");
+            resetSlotsView("No available slots for the selected doctor.");
             return;
         }
 
