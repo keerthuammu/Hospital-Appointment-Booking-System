@@ -72,8 +72,8 @@ $(document).ready(function () {
         if (!$grid.length) return; // Not on home page
         $grid.empty();
 
-        // Show only first 4 doctors on home page
-        doctors.slice(0, 4).forEach(function (doc) {
+        // Show only first 6 doctors on home page
+        doctors.slice(0, 6).forEach(function (doc) {
             let cardHtml = `
                 <div class="doc-home-card glass-card">
                     <img src="${doc.photo}" alt="${doc.name}">
