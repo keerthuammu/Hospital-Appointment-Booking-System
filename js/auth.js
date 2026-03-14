@@ -60,8 +60,10 @@ $(document).ready(function() {
                     $('#loginAlert').removeClass('d-none').text(res.message);
                 }
             },
-            error: function() {
-                $('#loginAlert').removeClass('d-none').text('Server error occurred.');
+            error: function(xhr, status, error) {
+                console.error("Auth Login Error:", status, error);
+                console.log("Server Response:", xhr.responseText);
+                $('#loginAlert').removeClass('d-none').text('Server error: Check if MySQL is started and database "hospital_booking" exists.');
             }
         });
     });
@@ -93,8 +95,10 @@ $(document).ready(function() {
                     $('#regAlert').removeClass('d-none').text(res.message);
                 }
             },
-            error: function() {
-                $('#regAlert').removeClass('d-none').text('Server error occurred.');
+            error: function(xhr, status, error) {
+                console.error("Auth Register Error:", status, error);
+                console.log("Server Response:", xhr.responseText);
+                $('#regAlert').removeClass('d-none').text('Server error: Check if MySQL is started and database "hospital_booking" exists.');
             }
         });
     });
