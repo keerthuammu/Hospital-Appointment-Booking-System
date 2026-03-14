@@ -6,7 +6,7 @@ CarePlus is developed by a **12-member team**. Each role corresponds to a specif
 | Role | Lead | Branch Name |
 | :--- | :--- | :--- |
 | **Project Lead** | Keerthana | `main` |
-| **UI/UX Designer**| Milan | `ui-development` |
+| **UI/UX Designer**| Milan M Antony| `ui-development` |
 | **HTML Lead** | Jidhin | `html-structure` |
 | **CSS Developer** | Liya | `css-styling` |
 | **Bootstrap Dev** | Jasir | `bootstrap-components` |
