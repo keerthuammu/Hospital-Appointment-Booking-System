@@ -6,7 +6,7 @@ CarePlus is developed by a **12-member team**. Each role corresponds to a specif
 | Role | Lead | Branch Name |
 | :--- | :--- | :--- |
 | **Project Lead** | Keerthana | `main` |
-| **UI/UX Designer**| Milan M Antony| `ui-development` |
+| **UI/UX Designer**| Milan | `ui-development` |
 | **HTML Lead** | Jidhin | `html-structure` |
 | **CSS Developer** | Liya | `css-styling` |
 | **Bootstrap Dev** | Jasir | `bootstrap-components` |
@@ -15,7 +15,7 @@ CarePlus is developed by a **12-member team**. Each role corresponds to a specif
 | **AJAX Lead** | Josekutty | `AJAX-Developer` |
 | **Backend Dev** | Jobin | `php-backend` |
 | **Database Lead** | Lamees | `mysql-database` |
-| **Integrator** | Mahi | `integration` |
+| **Integrator** | Mahi Manoj | `integration` |
 | **QA / Testing** | Jiya | `testing-documentation` |
 
 ---
@@ -53,7 +53,7 @@ git merge main
 
 ### 4. Pull Requests
 - Open a PR from your branch → `main`.
-- **Keerthana** will review and merge the code.
+- **Keerthana** will review and merge the code
 
 ---
 *For final verification, refer to the [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md).*
