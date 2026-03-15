@@ -282,7 +282,7 @@ $(document).ready(function () {
                 }
             },
             error: function() {
-                alert("An error occurred connecting to the server.");
+                alert("Server connection error. Please try again later.");
             }
         });
     });
