@@ -176,7 +176,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                console.warn("Could not load check_slots API, assuming no bookings.");
+                console.warn("Slot availability API not reachable, assuming no bookings");
                 globalBookedSlots = [];
                 renderSlots(doctorId, []);
             }
