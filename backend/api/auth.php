@@ -46,13 +46,19 @@ switch ($action) {
         }
         break;
 
-    case 'register':            
-        $name = $data['name'] ?? '';
-        $email = $data['email'] ?? '';
-        $password = $data['password'] ?? '';
-        $phone = $data['phone'] ?? '';
-        $address = $data['address'] ?? '';
-        $dob = $data['date_of_birth'] ?? '';
+        case 'register':                                // Executes this block when the action is "register"
+
+        $name = $data['name'] ?? '';                 // Get 'name' from $data; if it doesn't exist, use empty string
+
+        $email = $data['email'] ?? '';               // Get 'email' from $data; if not provided, set it to ''
+
+        $password = $data['password'] ?? '';         // Get 'password' from $data; if missing, default to ''
+
+        $phone = $data['phone'] ?? '';               // Get 'phone' number from $data; default to '' if not present
+
+        $address = $data['address'] ?? '';           // Get 'address' from $data; use empty string if not provided
+
+        $dob = $data['date_of_birth'] ?? '';         // Get 'date_of_birth' from $data; default to '' if it doesn't exist
         $role = 'patient'; // Only patients register themselves via signup
 
         if (empty($name) || empty($email) || empty($password)) {
