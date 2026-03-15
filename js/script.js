@@ -170,7 +170,7 @@ $(document).ready(function () {
                     globalBookedSlots = bookedSlotsForDocAndDate;
                     renderSlots(doctorId, bookedSlotsForDocAndDate);
                 } else {
-                    console.error("Failed to fetch slots");
+                    console.error("Failed to fetch available slots");
                     globalBookedSlots = [];
                     renderSlots(doctorId, []);
                 }
