@@ -336,7 +336,7 @@ $(document).ready(function () {
                 errorMsg = "Patient name is required";
             } else if (val.length < 3) {
                 isValid = false;
-                errorMsg = "Name must be at least 3 characters";
+                errorMsg = "Patient name must contain at least 3 characters";
             }
         } else if (id === 'patientPhone') {
             // Basic regex for international phone numbers
