@@ -151,7 +151,7 @@ $(document).ready(function () {
         if (doctorId && selectedDate) {
             checkAvailabilityAndRenderSlots(parseInt(doctorId), selectedDate);
         } else {
-            resetSlotsView("Please select a doctor and date to see available slots.");
+            resetSlotsView("Please select a doctor and appointment date to see available slots.");
         }
 
         // Clear any previous selection when dependencies change
@@ -170,13 +170,13 @@ $(document).ready(function () {
                     globalBookedSlots = bookedSlotsForDocAndDate;
                     renderSlots(doctorId, bookedSlotsForDocAndDate);
                 } else {
-                    console.error("Failed to fetch slots");
+                    console.error("Failed to fetch available slots");
                     globalBookedSlots = [];
                     renderSlots(doctorId, []);
                 }
             },
             error: function () {
-                console.warn("Could not load check_slots API, assuming no bookings.");
+                console.warn("Slot availability API not reachable, assuming no bookings");
                 globalBookedSlots = [];
                 renderSlots(doctorId, []);
             }
@@ -191,7 +191,7 @@ $(document).ready(function () {
         if (!docRecord) return;
 
         if (docRecord.slots.length === 0) {
-            resetSlotsView("No available slots for the selected doctor.");
+            resetSlotsView("No appointment slots available for the selected doctor.");
             return;
         }
 
@@ -238,7 +238,7 @@ $(document).ready(function () {
 
         // Prevent Double Booking Check 
         if (globalBookedSlots.includes(selectedTimeSlot)) {
-            showError($('#slotsContainer'), "Error: Slot already booked. Please choose another slot.");
+            showError($('#slotsContainer'), "Error:Selected slot is already booked. Please choose another time.");
             refreshSlotView(); // Resync slots view
             return;
         }
@@ -282,7 +282,7 @@ $(document).ready(function () {
                 }
             },
             error: function() {
-                alert("An error occurred connecting to the server.");
+                alert("Server connection error. Please try again later.");
             }
         });
     });
@@ -336,14 +336,14 @@ $(document).ready(function () {
                 errorMsg = "Patient name is required";
             } else if (val.length < 3) {
                 isValid = false;
-                errorMsg = "Name must be at least 3 characters";
+                errorMsg = "Patient name must contain at least 3 characters";
             }
         } else if (id === 'patientPhone') {
             // Basic regex for international phone numbers
             let phoneRegex = /^\+?[\d\s-]{10,15}$/;
             if (!val) {
                 isValid = false;
-                errorMsg = "Phone number is required";
+                errorMsg = "Patient phone number is required";
             } else if (!phoneRegex.test(val)) {
                 isValid = false;
                 errorMsg = "Please enter a valid phone number";
@@ -380,7 +380,7 @@ $(document).ready(function () {
 
         if (!selectedTimeSlot) {
             isSlotValid = false;
-            showError($('#slotsContainer'), "Please select a time slot");
+            showError($('#slotsContainer'), "Please select an available appointment time slot");
         } else {
             clearError($('#slotsContainer'));
         }
