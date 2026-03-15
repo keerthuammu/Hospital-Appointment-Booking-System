@@ -191,7 +191,7 @@ $(document).ready(function () {
         if (!docRecord) return;
 
         if (docRecord.slots.length === 0) {
-            resetSlotsView("No available slots for the selected doctor.");
+            resetSlotsView("No appointment slots available for the selected doctor.");
             return;
         }
 
