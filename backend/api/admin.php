@@ -33,6 +33,7 @@ switch ($action) {
             $stmt2 = $pdo->prepare("INSERT INTO doctors (user_id, doctor_name, specialization, experience, fee, available_days, available_slots) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt2->execute([$user_id, $data['name'], $data['specialization'], $data['experience'], $data['fee'], $data['available_days'], $data['available_slots']]);
             
+            
             $pdo->commit();
             echo json_encode(['success' => true]);
         } catch (Exception $e) {
@@ -67,6 +68,7 @@ switch ($action) {
 
     case 'update_doctor':
         $data = json_decode(file_get_contents("php://input"), true);
+
         try {
             $pdo->beginTransaction();
             

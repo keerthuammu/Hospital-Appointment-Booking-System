@@ -14,6 +14,7 @@ switch ($action) {
         $email = $data['email'] ?? '';
         $password = $data['password'] ?? '';
 
+
         if (empty($email) || empty($password)) {
             echo json_encode(['success' => false, 'message' => 'Email and password are required']);
             exit;
@@ -45,7 +46,7 @@ switch ($action) {
         }
         break;
 
-    case 'register':
+    case 'register':            
         $name = $data['name'] ?? '';
         $email = $data['email'] ?? '';
         $password = $data['password'] ?? '';
