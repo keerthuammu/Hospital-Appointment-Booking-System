@@ -343,7 +343,7 @@ $(document).ready(function () {
             let phoneRegex = /^\+?[\d\s-]{10,15}$/;
             if (!val) {
                 isValid = false;
-                errorMsg = "Phone number is required";
+                errorMsg = "Patient phone number is required";
             } else if (!phoneRegex.test(val)) {
                 isValid = false;
                 errorMsg = "Please enter a valid phone number";
