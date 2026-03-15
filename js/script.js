@@ -151,7 +151,7 @@ $(document).ready(function () {
         if (doctorId && selectedDate) {
             checkAvailabilityAndRenderSlots(parseInt(doctorId), selectedDate);
         } else {
-            resetSlotsView("Please select a doctor and date to see available slots.");
+            resetSlotsView("Please select a doctor and appointment date to see available slots.");
         }
 
         // Clear any previous selection when dependencies change
