@@ -2,6 +2,12 @@
 /**
  * CarePlus Hospital System - Doctor Directory API
  */
+/*
+get_doctors.php
+
+Purpose: Retrieve list of doctors
+*/
+
 header('Content-Type: application/json');
 require_once '../includes/config.php';
 

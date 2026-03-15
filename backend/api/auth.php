@@ -2,6 +2,24 @@
 /**
  * CarePlus Hospital System - Authentication & Session API
  */
+
+/*
+auth.php
+
+Purpose: Authentication (Login / Logout / Session check)
+
+Typical functions:
+
+Login users
+
+Verify password
+
+Start session
+
+Check if user is logged in
+
+Logout
+*/
 session_start();
 header('Content-Type: application/json');
 require_once '../includes/config.php';

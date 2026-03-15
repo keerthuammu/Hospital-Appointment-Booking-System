@@ -2,6 +2,24 @@
 /**
  * CarePlus Hospital System - Doctor Portal API
  */
+/*
+doctor.php
+
+Purpose: Doctor related operations
+
+Handles data about doctors.
+
+Typical functions:
+
+Get doctor profile
+
+Update doctor details
+
+Get doctor appointments
+
+Set availability
+*/
+
 session_start();
 header('Content-Type: application/json');
 require_once '../includes/config.php';

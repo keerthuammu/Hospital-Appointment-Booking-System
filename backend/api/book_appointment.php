@@ -2,6 +2,19 @@
 /**
  * CarePlus Hospital System - Booking Submission API
  */
+/*
+book_appointment.php
+
+Purpose: Create an appointment
+
+This is where appointment booking happens.
+
+Typical process:
+
+1️ Validate patient
+2️ Check slot availability
+3️ Insert appointment into database
+*/
 session_start();
 header('Content-Type: application/json');
 require_once '../includes/config.php';
