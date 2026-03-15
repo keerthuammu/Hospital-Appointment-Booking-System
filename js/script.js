@@ -238,7 +238,7 @@ $(document).ready(function () {
 
         // Prevent Double Booking Check 
         if (globalBookedSlots.includes(selectedTimeSlot)) {
-            showError($('#slotsContainer'), "Error: Slot already booked. Please choose another slot.");
+            showError($('#slotsContainer'), "Error:Selected slot is already booked. Please choose another time.");
             refreshSlotView(); // Resync slots view
             return;
         }
