@@ -380,7 +380,7 @@ $(document).ready(function () {
 
         if (!selectedTimeSlot) {
             isSlotValid = false;
-            showError($('#slotsContainer'), "Please select a time slot");
+            showError($('#slotsContainer'), "Please select an available appointment time slot");
         } else {
             clearError($('#slotsContainer'));
         }
