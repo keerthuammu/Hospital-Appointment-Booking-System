@@ -6,7 +6,7 @@
 $host = 'localhost';
 $db   = 'hospital_booking';
 $user = 'root';
-$pass = ''; // 🛠️ CHANGE THIS if you have a database password
+$pass = 'Li16@2003'; // 🛠️ CHANGE THIS if you have a database password
 $charset = 'utf8mb4';
 
 // 🛠️ ADD ";port=3307" to $dsn below if your MySQL port is not 3306
