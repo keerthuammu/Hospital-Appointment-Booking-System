@@ -2,6 +2,20 @@
 /**
  * CarePlus Hospital System - Slot Availability Checker
  */
+/*
+check_slots.php
+
+Purpose: Check available appointment slots
+
+Prevents double booking.
+
+Example workflow:
+
+1️ User selects doctor
+2️ User selects date
+3️ System checks available slots
+*/
+
 header('Content-Type: application/json');
 require_once '../includes/config.php';
 

@@ -2,6 +2,25 @@
 /**
  * CarePlus Hospital System - Admin Management API
  */
+/*
+admin.php
+
+Purpose: Admin operations
+
+Admin usually manages the system.
+
+Typical features:
+
+Add doctors
+
+Delete doctors
+
+View all appointments
+
+Manage users
+
+Manage schedules
+*/
 session_start();
 header('Content-Type: application/json');
 require_once '../includes/config.php';
@@ -33,6 +52,7 @@ switch ($action) {
             $stmt2 = $pdo->prepare("INSERT INTO doctors (user_id, doctor_name, specialization, experience, fee, available_days, available_slots) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $stmt2->execute([$user_id, $data['name'], $data['specialization'], $data['experience'], $data['fee'], $data['available_days'], $data['available_slots']]);
             
+
             $pdo->commit();
             echo json_encode(['success' => true]);
         } catch (Exception $e) {
@@ -67,6 +87,7 @@ switch ($action) {
 
     case 'update_doctor':
         $data = json_decode(file_get_contents("php://input"), true);
+
         try {
             $pdo->beginTransaction();
             
