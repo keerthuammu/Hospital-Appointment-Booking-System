@@ -1,3 +1,4 @@
+/* Outline Button (Login) */
 .btn-outline-primary {
     background: transparent;
     color: var(--primary-blue);
@@ -24,26 +25,6 @@
     0% { transform: scale(1) rotate(0deg); }
     60% { transform: scale(1.12) rotate(-3deg); }
     100% { transform: scale(1.08) rotate(-2deg); }
-}
-/* Outline Button (Login) */
-.btn-outline-primary {
-    background: transparent;
-    color: var(--primary-blue);
-    border: 2px solid var(--primary-blue);
-    padding: 0.6rem 1.5rem;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
-}
-
-.btn-outline-primary:hover {
-    background: var(--primary-blue);
-    color: #fff;
-    box-shadow: 0 8px 24px -4px rgba(37,99,235,0.18);
 }
 /* Buttons */
 .btn-primary {

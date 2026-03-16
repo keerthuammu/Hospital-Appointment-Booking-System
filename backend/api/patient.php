@@ -2,6 +2,9 @@
 /**
  * CarePlus Hospital System - Patient Dashboard API
  */
+/*
+
+*/
 session_start();
 header('Content-Type: application/json');
 require_once '../includes/config.php';

@@ -14,7 +14,7 @@ Check `backend/includes/config.php` to ensure database credentials match your lo
 ```php
 $db_name = 'hospital_booking';
 $db_user = 'root';
-$db_pass = ''; // Default for XAMPP
+$db_pass = ''; // Default for XAMPP // change if password needed
 ```
 
 ### 4. Running the App

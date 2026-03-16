@@ -53,7 +53,7 @@ git merge main
 
 ### 4. Pull Requests
 - Open a PR from your branch → `main`.
-- **Keerthana** will review and merge the code.
+- **Keerthana** will review and merge the code
 
 ---
-*For final verification, refer to the [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md).*
+*For the final verification, refer to the [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md).*

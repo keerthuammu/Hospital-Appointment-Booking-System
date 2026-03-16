@@ -42,7 +42,7 @@ $(document).ready(function() {
         checkSessionAndRedirect();
     }
 
-    // Login Form Submit
+    // Login Form Submitted
     $('#loginForm').on('submit', function(e) {
         e.preventDefault();
         let email = $('#email').val();
@@ -68,7 +68,7 @@ $(document).ready(function() {
         });
     });
 
-    // Register Form Submit
+    // Register Form Submitted
     $('#registerForm').on('submit', function(e) {
         e.preventDefault();
         
