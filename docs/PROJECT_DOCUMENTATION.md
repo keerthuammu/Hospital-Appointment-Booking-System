@@ -1,7 +1,7 @@
 # 🏥 CarePlus Project Documentation
 
 ## 1. Introduction
-CarePlus is a full-stack web application that automates hospital scheduling, reducing waiting times and eliminating manual coordination errors.
+CarePlus is a full-stack web application that automates hospital scheduling, reducing waiting times and eliminating manual coordination errors
 
 ## 2. System Roles
 | Role | Permissions |
