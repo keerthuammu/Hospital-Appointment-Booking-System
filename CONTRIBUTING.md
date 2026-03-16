@@ -56,4 +56,4 @@ git merge main
 - **Keerthana** will review and merge the code
 
 ---
-*For final verification, refer to the [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md).*
+*For the final verification, refer to the [docs/PROJECT_DOCUMENTATION.md](docs/PROJECT_DOCUMENTATION.md).*
