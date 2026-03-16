@@ -15,7 +15,7 @@ CarePlus is developed by a **12-member team**. Each role corresponds to a specif
 | **AJAX Lead** | Josekutty | `AJAX-Developer` |
 | **Backend Dev** | Jobin | `php-backend` |
 | **Database Lead** | Lamees | `mysql-database` |
-| **Integrator** | Mahi Manoj | `integration` |
+| **Integrator** | Mahi | `integration` |
 | **QA / Testing** | Jiya | `testing-documentation` |
 
 ---
