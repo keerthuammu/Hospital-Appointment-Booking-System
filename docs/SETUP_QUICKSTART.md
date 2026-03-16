@@ -2,6 +2,8 @@
 
 This guide will help you get the **CarePlus Hospital System** running on your local machine using XAMPP.
 
+**Stuck? See the [Troubleshooting Guide](TROUBLESHOOTING.md) for DB password and path fixes.**
+
 ---
 
 ### 1️⃣ XAMPP Installation & Setup
