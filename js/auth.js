@@ -68,7 +68,7 @@ $(document).ready(function() {
         });
     });
 
-    // Register Form Submit
+    // Register Form Submitted
     $('#registerForm').on('submit', function(e) {
         e.preventDefault();
         
