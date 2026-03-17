@@ -47,12 +47,7 @@ $(document).ready(function() {
     });
 
     // Tab switcher
-    // Sidebar toggle for small screens (collapse/hide when not using offcanvas)
-    $('#sidebarToggle').on('click', function() {
-        $('#dashboardSidebar').toggleClass('collapsed');
-    });
-
-    // Off-canvas open/close handlers (accessible)
+    // Sidebar behavior: only enable off-canvas and small-screen toggles when window <= 992px
     function openSidebarOffcanvas() {
         $('#dashboardSidebar').addClass('sidebar-offcanvas open').attr('aria-hidden', 'false');
         $('#sidebarOpenBtn').attr('aria-expanded', 'true');
@@ -63,12 +58,35 @@ $(document).ready(function() {
         $('#sidebarOpenBtn').attr('aria-expanded', 'false');
         $('#sidebarOverlay').removeClass('active');
     }
-    $('#sidebarOpenBtn').on('click', function() { openSidebarOffcanvas(); });
 
-    // Add overlay close handler
-    $(document).on('click', '#sidebarOverlay', function() { closeSidebarOffcanvas(); });
-    // Close with Esc
-    $(document).on('keydown', function(e) { if(e.key === 'Escape') closeSidebarOffcanvas(); });
+    function updateSidebarMode() {
+        const isSmall = $(window).width() <= 992;
+        if (isSmall) {
+            // Hide persistent sidebar and show open button
+            $('#dashboardSidebar').addClass('sidebar-offcanvas').removeClass('collapsed');
+            $('#sidebarOpenBtn').show();
+            // bind handlers (ensure only bound once)
+            $('#sidebarOpenBtn').off('click.offcanvas').on('click.offcanvas', openSidebarOffcanvas);
+            $(document).off('click.sidebarOverlay').on('click.sidebarOverlay', '#sidebarOverlay', closeSidebarOffcanvas);
+            $(document).off('keydown.sidebarEsc').on('keydown.sidebarEsc', function(e) { if (e.key === 'Escape') closeSidebarOffcanvas(); });
+            // ensure sidebar hidden by default (offcanvas closed)
+            $('#dashboardSidebar').removeClass('open');
+            $('#sidebarOverlay').removeClass('active');
+        } else {
+            // Desktop: remove offcanvas mode, ensure sidebar visible and button hidden
+            $('#dashboardSidebar').removeClass('sidebar-offcanvas open').attr('aria-hidden', 'false');
+            $('#sidebarOpenBtn').hide().attr('aria-expanded', 'false');
+            $('#sidebarOverlay').removeClass('active');
+            // unbind small-screen handlers
+            $('#sidebarOpenBtn').off('click.offcanvas');
+            $(document).off('click.sidebarOverlay');
+            $(document).off('keydown.sidebarEsc');
+        }
+    }
+
+    // Initialize mode and update on resize
+    updateSidebarMode();
+    $(window).on('resize', function() { updateSidebarMode(); toggleAppointmentsView(); });
     window.switchTab = function(tabName) {
         $('.nav-item').removeClass('active');
         $(`[onclick="switchTab('${tabName}')"]`).addClass('active');
