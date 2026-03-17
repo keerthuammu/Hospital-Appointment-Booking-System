@@ -1,19 +1,48 @@
 /**
  * CarePlus Hospital System - Patient Dashboard Logic
  */
-$(document).ready(function() {
-    
-    // Check auth
+
+// Immediate auth check - runs before page renders
+(function() {
     $.ajax({
         url: 'backend/api/auth.php?action=check_session',
         method: 'GET',
         dataType: 'json',
+        cache: false,
+        headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache'
+        },
         success: function(res) {
             if (!res.success || res.role !== 'patient') {
-                window.location.href = 'login.html';
+                window.location.replace('login.html');
+                return;
+            }
+        },
+        error: function() {
+            window.location.replace('login.html');
+            return;
+        }
+    });
+})();
+
+$(document).ready(function() {
+    
+    // Double-check auth on ready
+    $.ajax({
+        url: 'backend/api/auth.php?action=check_session',
+        method: 'GET',
+        dataType: 'json',
+        cache: false,
+        success: function(res) {
+            if (!res.success || res.role !== 'patient') {
+                window.location.replace('login.html');
             } else {
                 loadHistory();
             }
+        },
+        error: function() {
+            window.location.replace('login.html');
         }
     });
 

@@ -109,6 +109,149 @@
     box-shadow: var(--shadow-sm);
 }
 
+/* Auth Pages Layout */
+.auth-section {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    padding-top: 120px; /* Spacing from fixed nav */
+    padding-bottom: 3rem;
+    background: radial-gradient(circle at top, #DBEAFE, #F8FAFC);
+}
+
+/* Auth form card styling */
+.auth-section .glass-card {
+    margin-top: 1rem; /* Extra spacing from nav */
+}
+
+/* Ensure nav is visible on auth pages */
+body:has(.auth-section) nav {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive auth section */
+@media (max-width: 768px) {
+    .auth-section {
+        padding-top: 100px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 2rem;
+    }
+    
+    .auth-section .glass-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 1.5rem !important;
+        border-radius: var(--radius-md) !important;
+    }
+    
+    .auth-section .container {
+        padding: 0;
+    }
+    
+    .auth-section .row {
+        flex-direction: column;
+        margin: 0;
+    }
+    
+    .auth-section .col-md-6 {
+        width: 100%;
+        padding: 0;
+    }
+    
+    .auth-section .form-group {
+        margin-bottom: 0.75rem !important;
+    }
+    
+    .auth-section label {
+        font-size: 0.85rem;
+    }
+    
+    .auth-section .form-control {
+        font-size: 16px; /* Prevents iOS zoom on focus */
+        padding: 0.75rem;
+    }
+    
+    .auth-section .btn-primary {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-section {
+        padding-top: 90px;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    .auth-section .glass-card {
+        padding: 1.25rem !important;
+        border-radius: var(--radius-sm) !important;
+    }
+    
+    .auth-section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .auth-section p {
+        font-size: 0.85rem !important;
+    }
+    
+    .auth-section .logo {
+        font-size: 1.2rem;
+    }
+    
+    .auth-section .logo-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .auth-section .form-group {
+        margin-bottom: 0.6rem !important;
+    }
+    
+    .auth-section label {
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .auth-section .form-control {
+        padding: 0.65rem;
+        font-size: 16px;
+    }
+    
+    .auth-section .btn-primary {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .auth-section .alert {
+        font-size: 0.8rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    /* Mobile nav adjustments for auth pages */
+    body:has(.auth-section) nav {
+        padding: 0.8rem 1rem !important;
+        width: 95% !important;
+    }
+    
+    body:has(.auth-section) .logo {
+        font-size: 1.1rem;
+    }
+    
+    body:has(.auth-section) .logo-icon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
 /* Footer */
 .main-footer {
     background: white;

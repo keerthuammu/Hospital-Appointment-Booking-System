@@ -3,27 +3,88 @@
  * Handles booking flow, dynamic slot loading, and global navigation.
  */
 $(document).ready(function () {
+    console.log("Global script initialized on:", window.location.pathname);
     let globalDoctorsData = [];
     let globalBookedSlots = [];
 
+    // Prevent back button access to dashboards if not logged in
+    preventUnauthorizedDashboardAccess();
+
     // --- INITIALIZATION ---
     let today = new Date().toISOString().split('T')[0];
-    $('#appointmentDate').attr('min', today);
+    if ($('#appointmentDate').length) {
+        $('#appointmentDate').attr('min', today);
+    }
 
     // Initial Data Loading
     loadDoctors();
-    checkLoginState();
+    checkSessionAndUpdateNav();
 
-    function checkLoginState() {
+    // Prevent back button to dashboard pages
+    function preventUnauthorizedDashboardAccess() {
+        // Always check session and prevent back if not logged in
+        $.ajax({
+            url: 'backend/api/auth.php?action=check_session',
+            method: 'GET',
+            cache: false,
+            success: function(res) {
+                if (!res.success) {
+                    // Block navigation to dashboards
+                    blockDashboardNavigation();
+                }
+            }
+        });
+    }
+
+    function blockDashboardNavigation() {
+        // Override history methods
+        window.history.pushState = function() { };
+        window.history.replaceState = function() { };
+        
+        // Prevent back button
+        window.addEventListener('popstate', function(event) {
+            window.history.pushState(null, null, window.location.href);
+        });
+        
+        // Push current state
+        window.history.pushState(null, null, window.location.href);
+        
+        // Check on page visibility change
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                checkAndRedirectIfNeeded();
+            }
+        });
+        
+        // Check on window focus
+        $(window).on('focus', function() {
+            checkAndRedirectIfNeeded();
+        });
+    }
+
+    function checkAndRedirectIfNeeded() {
+        $.ajax({
+            url: 'backend/api/auth.php?action=check_session',
+            method: 'GET',
+            cache: false,
+            success: function(res) {
+                if (!res.success) {
+                    // If somehow on dashboard without session, redirect to home
+                    if (window.location.href.includes('dashboard.html')) {
+                        window.location.replace('index.html');
+                    }
+                }
+            }
+        });
+    }
+
+    function checkSessionAndAutoFill() {
         $.ajax({
             url: 'backend/api/auth.php?action=check_session',
             method: 'GET',
             dataType: 'json',
             success: function(res) {
-                const isBookingPage = window.location.pathname.includes('booking.html');
-                
                 if(res.success && res.role === 'patient') {
-                    // Fetch profile to auto-fill
                     $.ajax({
                         url: 'backend/api/patient.php?action=get_profile',
                         method: 'GET',
@@ -34,34 +95,56 @@ $(document).ready(function () {
                             }
                         }
                     });
-
-                    // Update Nav - Change Login to My Dashboard
-                    $('.auth-btn').attr('href', 'patient_dashboard.html').html('My Dashboard');
-                    $('.login-link').attr('href', 'patient_dashboard.html').html('My Dashboard');
-                } else if(res.success && res.role === 'admin') {
-                    $('.auth-btn').attr('href', 'admin_dashboard.html').html('Admin Panel');
-                    $('.login-link').attr('href', 'admin_dashboard.html').html('Admin Panel');
-                    if(isBookingPage) window.location.href = 'admin_dashboard.html';
-                } else if(res.success && res.role === 'doctor') {
-                    $('.auth-btn').attr('href', 'doctor_dashboard.html').html('Doctor Portal');
-                    $('.login-link').attr('href', 'doctor_dashboard.html').html('Doctor Portal');
-                    if(isBookingPage) window.location.href = 'doctor_dashboard.html';
-                } else {
-                    // Not logged in
-                    if(isBookingPage) {
-                        window.location.href = 'login.html?redirect=booking.html';
-                    }
                 }
             }
         });
     }
 
+    function checkSessionAndUpdateNav() {
+        console.log("Checking session for nav update...");
+        $.ajax({
+            url: 'backend/api/auth.php?action=check_session',
+            method: 'GET',
+            dataType: 'json',
+            success: function(res) {
+                console.log("Session check response:", res);
+                if(res.success) {
+                    let dashboardUrl = 'patient_dashboard.html';
+                    let label = 'My Dashboard';
+                    
+                    if(res.role === 'admin') {
+                        dashboardUrl = 'admin_dashboard.html';
+                        label = 'Admin Panel';
+                    } else if(res.role === 'doctor') {
+                        dashboardUrl = 'doctor_dashboard.html';
+                        label = 'Doctor Portal';
+                    }
+
+                    $('.auth-btn').attr('href', dashboardUrl).text(label);
+                    $('.login-link').attr('href', dashboardUrl).text(label);
+                    
+                    if (window.location.pathname.includes('booking.html')) {
+                        checkSessionAndAutoFill();
+                    }
+                } else {
+                    console.log("No active session, keeping login buttons.");
+                    $('.auth-btn').attr('href', 'login.html').text('Login');
+                    $('.login-link').attr('href', 'login.html').text('Login');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Session check failed:", error);
+            }
+        });
+    }
+
     function loadDoctors() {
+        console.log("Fetching doctors...");
         $.getJSON('backend/api/get_doctors.php', function (data) {
             globalDoctorsData = data;
-            populateDepartmentDropdown(data);
-            populateDoctorDropdown(data);
-            renderHomeDoctors(data);
+            if ($('#departmentSelect').length) populateDepartmentDropdown(data);
+            if ($('#doctorSelect').length) populateDoctorDropdown(data);
+            if ($('#homeDoctorsGrid').length) renderHomeDoctors(data);
         }).fail(function () {
             console.error("Error loading doctor data.");
         });
@@ -303,7 +386,7 @@ $(document).ready(function () {
     $('#closeModalBtn, #modalOverlay').on('click', function (e) {
         if (e.target.id === 'modalOverlay' || e.target.id === 'closeModalBtn') {
             $('#modalOverlay').removeClass('active');
-            window.location.href = 'patient_dashboard.html';
+            window.location.href = 'index.html';
         }
     });
 

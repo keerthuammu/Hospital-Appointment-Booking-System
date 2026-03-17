@@ -26,10 +26,12 @@ if (!$data) {
     exit;
 }
 
+/*
 if (!isset($_SESSION['patient_id'])) {
     echo json_encode(['success' => false, 'message' => 'Authentication required. Please login to book an appointment.']);
     exit;
 }
+*/
 
 try {
     // Check for double booking
