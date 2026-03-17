@@ -86,3 +86,51 @@
     .my-bookings-grid { grid-template-columns: 1fr; }
     .booking-card { padding: 1.2rem; }
 }
+
+/* Responsive dashboard layout adjustments */
+@media (max-width: 992px) {
+    /* Stack sidebar above content on tablet/smaller screens */
+    .dashboard-container { flex-direction: column; }
+    .sidebar {
+        width: 100% !important;
+        padding: 1rem !important;
+        border-right: none !important;
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
+        align-items: center;
+    }
+        /* Collapsed sidebar state for small screens */
+        .sidebar.collapsed {
+            display: none;
+        }
+    .sidebar .logo { flex: 0 0 auto; margin-right: 0.5rem; }
+    .sidebar .nav-item { flex: 0 0 auto; white-space: nowrap; margin-bottom: 0; }
+    .main-content { padding: 1rem !important; }
+    .nav-item { border-left: none !important; transform: none !important; }
+    .table-modern th, .table-modern td { padding: 10px 12px; font-size: 0.9rem; }
+}
+
+@media (max-width: 576px) {
+    /* Improve touch targets and spacing on phones */
+    .sidebar { padding: 0.75rem; }
+    .nav-item { padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; }
+    .table-modern th { display: none; }
+    .table-modern td { display: block; width: 100%; box-sizing: border-box; }
+    .table-modern td:first-child { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+    .table-modern tr { display: block; margin-bottom: 12px; }
+    .table-responsive { overflow-x: auto; }
+
+/* Small helper for the sidebar toggle button */
+.sidebar-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.04);
+    border: none;
+    cursor: pointer;
+}
+}
