@@ -47,46 +47,6 @@ $(document).ready(function() {
     });
 
     // Tab switcher
-    // Sidebar behavior: only enable off-canvas and small-screen toggles when window <= 992px
-    function openSidebarOffcanvas() {
-        $('#dashboardSidebar').addClass('sidebar-offcanvas open').attr('aria-hidden', 'false');
-        $('#sidebarOpenBtn').attr('aria-expanded', 'true');
-        $('#sidebarOverlay').addClass('active');
-    }
-    function closeSidebarOffcanvas() {
-        $('#dashboardSidebar').removeClass('open').attr('aria-hidden', 'true');
-        $('#sidebarOpenBtn').attr('aria-expanded', 'false');
-        $('#sidebarOverlay').removeClass('active');
-    }
-
-    function updateSidebarMode() {
-        const isSmall = $(window).width() <= 992;
-        if (isSmall) {
-            // Hide persistent sidebar and show open button
-            $('#dashboardSidebar').addClass('sidebar-offcanvas').removeClass('collapsed');
-            $('#sidebarOpenBtn').show();
-            // bind handlers (ensure only bound once)
-            $('#sidebarOpenBtn').off('click.offcanvas').on('click.offcanvas', openSidebarOffcanvas);
-            $(document).off('click.sidebarOverlay').on('click.sidebarOverlay', '#sidebarOverlay', closeSidebarOffcanvas);
-            $(document).off('keydown.sidebarEsc').on('keydown.sidebarEsc', function(e) { if (e.key === 'Escape') closeSidebarOffcanvas(); });
-            // ensure sidebar hidden by default (offcanvas closed)
-            $('#dashboardSidebar').removeClass('open');
-            $('#sidebarOverlay').removeClass('active');
-        } else {
-            // Desktop: remove offcanvas mode, ensure sidebar visible and button hidden
-            $('#dashboardSidebar').removeClass('sidebar-offcanvas open').attr('aria-hidden', 'false');
-            $('#sidebarOpenBtn').hide().attr('aria-expanded', 'false');
-            $('#sidebarOverlay').removeClass('active');
-            // unbind small-screen handlers
-            $('#sidebarOpenBtn').off('click.offcanvas');
-            $(document).off('click.sidebarOverlay');
-            $(document).off('keydown.sidebarEsc');
-        }
-    }
-
-    // Initialize mode and update on resize
-    updateSidebarMode();
-    $(window).on('resize', function() { updateSidebarMode(); toggleAppointmentsView(); });
     window.switchTab = function(tabName) {
         $('.nav-item').removeClass('active');
         $(`[onclick="switchTab('${tabName}')"]`).addClass('active');
@@ -111,14 +71,11 @@ $(document).ready(function() {
             success: function(res) {
                 let tbody = $('#appointmentsList');
                 tbody.empty();
-                let cards = $('#appointmentsCards');
-                cards.empty();
                 if(res.success && res.appointments.length > 0) {
                     res.appointments.forEach(a => {
                         let badgeClass = a.status === 'Cancelled' ? 'bg-danger' : 
                                          a.status === 'Completed' ? 'bg-secondary' : 
                                          a.status === 'Pending' ? 'bg-warning text-dark' : 'bg-success';
-                        // Append table row
                         tbody.append(`
                             <tr>
                                 <td class="fw-bold text-secondary">#${a.reference_no}</td>
@@ -139,44 +96,13 @@ $(document).ready(function() {
                                 </td>
                             </tr>
                         `);
-
-                        // Also create a mobile card representation
-                        let cardHtml = `
-                            <div class="appt-card">
-                                <div class="row-top">
-                                    <div class="ref">#${a.reference_no}</div>
-                                    <div><span class="badge ${badgeClass} rounded-pill px-2 py-1">${a.status}</span></div>
-                                </div>
-                                <div style="margin-top:8px; font-weight:700;">${a.patient_name}</div>
-                                <div class="meta">
-                                    <div>${a.patient_phone}</div>
-                                    <div>${a.doctor_name} · <small class="text-muted">${a.specialization}</small></div>
-                                    <div>${a.appointment_date} • ${a.time_slot}</div>
-                                </div>
-                            </div>
-                        `;
-                        cards.append(cardHtml);
                     });
                 } else {
                     tbody.append(`<tr><td colspan="6" class="text-center py-4 text-muted">No appointments found.</td></tr>`);
-                    $('#appointmentsCards').append(`<div class="no-bookings-placeholder">No appointments found.</div>`);
                 }
             }
         });
     }
-
-    // Toggle between table and card view on resize
-    function toggleAppointmentsView() {
-        if ($(window).width() <= 576) {
-            $('#appointmentsTableWrapper').hide();
-            $('#appointmentsCards').show();
-        } else {
-            $('#appointmentsTableWrapper').show();
-            $('#appointmentsCards').hide();
-        }
-    }
-    $(window).on('resize', toggleAppointmentsView);
-    toggleAppointmentsView();
 
     function loadDoctors() {
         $.ajax({
