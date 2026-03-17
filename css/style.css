@@ -20,5 +20,5 @@
 /* 5. Forms & Interaction (Booking, Slots) */
 @import 'modules/forms.css';
 
-/* 6. Dashboard Specific Styles */
-@import 'modules/dashboards.css';
+/* 6. Dashboard Specific Styles (Now embedded in HTML scripts) */
+/* @import 'modules/dashboards.css'; */

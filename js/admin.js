@@ -113,24 +113,35 @@ $(document).ready(function() {
                 tbody.empty();
                 if(res.success && res.doctors.length > 0) {
                     res.doctors.forEach(d => {
+                        let docJson = JSON.stringify(d).replace(/'/g, "&#39;");
                         tbody.append(`
-                            <tr>
-                                <td>
-                                    <div class="fw-bold" style="color: var(--primary-blue);">${d.doctor_name}</div>
-                                    <small class="text-muted">${d.email}</small>
-                                </td>
-                                <td><span class="badge bg-light text-dark border px-2 py-1">${d.specialization}</span></td>
-                                <td>${d.experience}</td>
-                                <td><small class="text-muted">${d.available_days}</small></td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary rounded-pill px-3 me-1" onclick='openEditModal(${JSON.stringify(d)})'>Edit</button>
-                                    <button class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="deleteDoctor(${d.doctor_id})">Remove</button>
-                                </td>
-                            </tr>
+                            <div class="col-md-6 col-xl-4">
+                                <div class="glass-card h-100 p-4 d-flex flex-column" style="border-radius: 20px;">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <div>
+                                            <h5 class="fw-bold mb-1" style="color: var(--primary-blue); font-size: 1.1rem;">${d.doctor_name}</h5>
+                                            <small class="text-muted d-block" style="font-size: 0.8rem; word-break: break-all;">${d.email}</small>
+                                        </div>
+                                        <span class="badge bg-light text-dark border px-2 py-1">${d.specialization}</span>
+                                    </div>
+                                    <div class="mb-4 text-muted small">
+                                        <div class="d-flex align-items-center mb-1">
+                                            <i class="bi bi-briefcase me-2 text-primary"></i> <strong>Experience:</strong> &nbsp;${d.experience}
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-calendar-check me-2 text-primary"></i> <strong>Days:</strong> &nbsp;${d.available_days}
+                                        </div>
+                                    </div>
+                                    <div class="d-flex gap-2 mt-auto pt-3 border-top w-100">
+                                        <button class="btn btn-sm btn-outline-primary rounded-pill py-2 flex-grow-1 fw-bold" onclick='openEditModal(${docJson})'>Edit</button>
+                                        <button class="btn btn-sm btn-outline-danger rounded-pill py-2 flex-grow-1 fw-bold" onclick="deleteDoctor(${d.doctor_id})">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
                         `);
                     });
                 } else {
-                    tbody.append(`<tr><td colspan="5" class="text-center py-4 text-muted">No doctors found.</td></tr>`);
+                    tbody.append(`<div class="col-12 text-center py-4 text-muted">No doctors found.</div>`);
                 }
             }
         });

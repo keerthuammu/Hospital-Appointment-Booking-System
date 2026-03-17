@@ -88,6 +88,48 @@
         .table-modern tbody tr:hover td {
             background: #fafbfe;
         }
+
+        /* Responsive Dashboard */
+        @media (max-width: 992px) {
+            .dashboard-container { display: block; }
+            .sidebar { 
+                width: 100%; 
+                padding: 1rem 0.5rem; 
+                display: flex; 
+                flex-direction: row; 
+                flex-wrap: wrap; 
+                gap: 8px;
+                justify-content: center;
+                border-right: none;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+            .sidebar .logo { width: 100%; margin-bottom: 10px !important; justify-content: center; }
+            .sidebar .nav-item { flex: 1 1 45%; min-width: 120px; text-align: center; margin: 0 !important; padding: 10px; font-size: 0.9rem; }
+            .sidebar .nav-item.d-block { width: 100%; flex: 1 1 100%; }
+            .main-content { padding: 1rem; width: 100%; overflow-x: hidden; }
+            .d-flex.justify-content-between.align-items-center.mb-4 { flex-direction: column; align-items: flex-start !important; gap: 10px; }
+            
+            /* Card-based Table Layout for Mobile */
+            .table-modern thead { display: none !important; }
+            .table-modern, .table-modern tbody, .table-modern tr, .table-modern td { display: block !important; width: 100% !important; border: none !important; }
+            .table-modern tr { 
+                margin-bottom: 1rem !important; 
+                border-radius: 12px; 
+                box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+                padding: 1rem; 
+                background: #fff; 
+            }
+            .table-modern td { padding: 0.4rem 0 !important; text-align: left; background: transparent; border-radius: 0 !important; }
+            .table-modern td:last-child { 
+                border-top: 1px dashed rgba(0,0,0,0.1) !important; 
+                margin-top: 0.5rem; 
+                padding-top: 1rem !important; 
+                display: flex !important; 
+                gap: 10px; 
+                flex-wrap: wrap; 
+            }
+            h2#pageTitle, h4 { font-size: 1.5rem !important; }
+        }
     </style>
 </head>
 <body>
