@@ -1,12 +1,12 @@
 # 🏥 CarePlus Project Documentation
 
 ## 1. Introduction
-CarePlus is a full-stack web application that automates hospital scheduling, reducing waiting times and eliminating manual coordination errors.
+CarePlus is a full-stack web application that automates hospital scheduling, reducing waiting times and eliminating manual coordination errors
 
 ## 2. System Roles
 | Role | Permissions |
 | :--- | :--- |
-| **Patient** | Register, login, book appointments, management profile (DOB), and view history. |
+| **Patient** | Register, login, book appointments, management profile (DOB), and view historys. |
 | **Doctor** | View personal schedules and manage upcoming patient visits. |
 | **Admin** | Manage the doctor directory (Add/Edit/Delete) and monitor all system appointments. |
 

@@ -1,4 +1,31 @@
-/*componets*/
+/* Outline Button (Login) */
+.btn-outline-primary {
+    background: transparent;
+    color: var(--primary-blue);
+    border: 2px solid var(--primary-blue);
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+
+.btn-outline-primary:hover {
+    background: var(--medical-teal);
+    color: #fff;
+    box-shadow: 0 8px 24px -4px rgba(14,165,233,0.18);
+    transform: scale(1.08) rotate(-2deg);
+    animation: loginPulse 0.4s;
+}
+
+@keyframes loginPulse {
+    0% { transform: scale(1) rotate(0deg); }
+    60% { transform: scale(1.12) rotate(-3deg); }
+    100% { transform: scale(1.08) rotate(-2deg); }
+}
 /* Buttons */
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
