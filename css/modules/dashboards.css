@@ -133,4 +133,54 @@
     border: none;
     cursor: pointer;
 }
+
+/* Off-canvas slide-in sidebar for small screens */
+.sidebar-offcanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    max-width: 80%;
+    transform: translateX(-110%);
+    transition: transform 0.28s ease;
+    z-index: 1050;
+    box-shadow: 0 8px 24px rgba(15,23,42,0.25);
+    background: rgba(255,255,255,0.98);
+    padding: 1.25rem;
+}
+.sidebar-offcanvas.open {
+    transform: translateX(0);
+}
+
+/* Overlay when sidebar is open */
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 1040;
+    opacity: 0;
+    transition: opacity 0.22s ease;
+    pointer-events: none;
+}
+.sidebar-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Appointment card styles for mobile view */
+.appointments-cards { display: grid; gap: 12px; }
+.appt-card { background: #fff; border-radius: 12px; padding: 12px; border: 1px solid #eef2ff; box-shadow: 0 6px 18px rgba(2,6,23,0.02); }
+.appt-card .row-top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.appt-card .ref { font-weight:700; color:var(--primary-blue); background:#eff6ff; padding:4px 8px; border-radius:12px; font-size:0.85rem; }
+.appt-card .meta { font-size:0.9rem; color:var(--text-muted); margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; }
+
+@media (max-width: 576px) {
+    /* show cards and hide table on phones */
+    #appointmentsCards { display: block; }
+    #appointmentsTableWrapper { display: none; }
+}
+@media (min-width: 577px) {
+    #appointmentsCards { display: none; }
+}
 }

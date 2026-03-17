@@ -108,7 +108,10 @@
         <!-- Main Content -->
         <div class="main-content">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 id="pageTitle" style="font-weight: 800; color: var(--text-dark);">All Appointments</h2>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <button id="sidebarOpenBtn" class="sidebar-toggle-btn d-md-none" aria-controls="dashboardSidebar" aria-expanded="false" title="Open menu">☰</button>
+                    <h2 id="pageTitle" style="font-weight: 800; color: var(--text-dark); margin:0;">All Appointments</h2>
+                </div>
                 <div class="d-flex align-items-center gap-3">
                     <span class="badge bg-primary rounded-pill px-3 py-2">Administrator</span>
                 </div>
@@ -117,7 +120,7 @@
             <!-- Appointments Tab -->
             <div id="appointmentsTab">
                 <div class="glass-card p-4">
-                    <div class="table-responsive">
+                    <div id="appointmentsTableWrapper" class="table-responsive">
                         <table class="table-modern">
                             <thead>
                                 <tr>
@@ -133,6 +136,8 @@
                                 <tr><td colspan="6" class="text-center py-4">Loading appointments...</td></tr>
                             </tbody>
                         </table>
+                        </div>
+                        <div id="appointmentsCards" class="appointments-cards d-none" style="margin-top:12px;"></div>
                     </div>
                 </div>
             </div>
